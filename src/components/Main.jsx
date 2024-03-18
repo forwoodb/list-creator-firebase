@@ -25,7 +25,7 @@ export default function Main() {
         <ul>
           {listNames.map((ln) => {
             return (
-              <li key={ln.id} listN={ln.listName}>
+              <li key={ln.id}>
                 <Link to={'/View/' + ln.id}>
                   {ln.listName}
                 </Link>
