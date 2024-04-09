@@ -1,6 +1,6 @@
 import AuthDetails from './AuthDetails';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import SignIn from '../SignIn';
+import SignUp from '../SignUp';
 
 const Auth = () => {
   return (

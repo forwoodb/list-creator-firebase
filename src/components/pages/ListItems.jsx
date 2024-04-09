@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {getDatabase, ref, onValue, push, remove, update} from 'firebase/database'
+import { Link } from "react-router-dom";
 
 export default function ListItems() {
   const [listName, setListName] = useState('')
@@ -78,6 +79,9 @@ export default function ListItems() {
         <input type="text" name="newItemText" />
         <button>Add</button>
       </form>
+      <Link to={'/'}>
+        <button>Update List</button>
+      </Link>
       <p>List Items</p>
       <ul>
         {listItems.map((lit) => {

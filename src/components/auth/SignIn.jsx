@@ -1,51 +1,52 @@
-// https://www.youtube.com/watch?v=Vv_Oi7zPPTw
+import { useState } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
 
-import { useState } from "react"
-import { auth } from "../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-
-const SignIn = () => {
+export default function AuthForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const signIn = (e) => {
+  const loginSubmit = (e) => {
     e.preventDefault()
-    console.log(email);
+    console.log(email); 
+    console.log(password); 
+
+    const auth = getAuth()
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential);
-        // Signed in 
-        // const user = userCredential.user;
-        // ...
+        const user = userCredential.user
+        console.log(user);
+        window.location.assign('/')
+        // window.location.reload()
       })
       .catch((error) => {
-        console.log(error);
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-      });
-    // return 
+        const errorCode = error.code 
+        const errorMessage = error.message 
+        console.log(errorCode);
+        console.log(errorMessage);
+      })
   }
 
-  return (
-    <div className="sign-in-container">
-      <form onSubmit={signIn}>
-        <h1>Log Into Account</h1>
-        <input 
-          type="email" 
-          placeholder="Enter your email" 
-          value={email} 
-          onChange={((e) => setEmail(e.target.value) )}
-        />
-        <input 
-          type="password" 
-          placeholder="Enter your password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Log In</button>
-      </form>
-    </div>
-  ) 
-}
+  const demoLogin = () => {
+    setEmail('demo@demo.com')
+    setPassword('password1234')
+  }
 
-export default SignIn
+  console.log(email);
+
+  return(
+      <>
+          <h1>Login</h1>
+          <form onSubmit={loginSubmit}>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value) } />
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value) } />
+              <button>Log In</button>
+          </form>
+          <Link to='/signup'>Sign Up</Link>
+          <p>Or</p>
+          <form onSubmit={loginSubmit}>
+            <button onClick={demoLogin}>Demo Login</button>
+          </form>
+      </>
+  )
+}

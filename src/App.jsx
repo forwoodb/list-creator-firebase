@@ -1,10 +1,10 @@
 import './App.css'
-import RoutesComponent from './components/RoutesComponent';
+import Routing from './components/Routing';
 
 function App() {
   return (
     <>
-      <RoutesComponent/>
+      <Routing />
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { auth } from '../../firebase'
+import { auth } from '../../../firebase'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 
 const AuthDetails = () => {
@@ -26,7 +26,7 @@ const AuthDetails = () => {
   }
 
   return (
-    <div>{ authUser ? <><p>{`Signed In as ${authUser.email}` }</p><button>Sign Out</button></> : <p>Signed Out</p>}</div>
+    <div>{ authUser ? <><p>{`Signed In as ${authUser.email}` }</p><button onClick={userSignOut}>Sign Out</button></> : <p>Signed Out</p>}</div>
   ) 
 }
 
