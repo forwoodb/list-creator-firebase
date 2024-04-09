@@ -101,47 +101,49 @@ export default function Main(props) {
       <table>
         <thead>
           <tr>
-            <th>Item</th>
+            <th>List Name</th>
             <th></th>
             <th></th>
             <th></th>
           </tr>
         </thead>
-        {listNames.map((ln) => {
-          if (editListName === ln.id) {
-            return (
-              <tr key={ln.id}>
-                <td>
-                  <input
-                    type="text"
-                    value={updateListName}
-                    onChange={(e) => setUpdateListName(e.target.value)}
-                  />
-                </td>
-                <td>
-                  <button onClick={() => handleUpdate(ln.id)}>Update</button>
-                </td>
-              </tr>
-            );
-          } else {
-            return (
-              <tr key={ln.id}>
-                <td>{ln.listName}</td>
-                <td>
-                  <Link to={"/View/" + ln.id}>
-                    <button>View List</button>
-                  </Link>
-                </td>
-                <td>
-                  <button onClick={() => deleteList(ln.id)}>Delete</button>
-                </td>
-                <td>
-                  <button onClick={() => editList(ln)}>Edit</button>
-                </td>
-              </tr>
-            );
-          }
-        })}
+        <tbody>
+          {listNames.map((ln) => {
+            if (editListName === ln.id) {
+              return (
+                <tr key={ln.id}>
+                  <td>
+                    <input
+                      type="text"
+                      value={updateListName}
+                      onChange={(e) => setUpdateListName(e.target.value)}
+                    />
+                  </td>
+                  <td>
+                    <button onClick={() => handleUpdate(ln.id)}>Update</button>
+                  </td>
+                </tr>
+              );
+            } else {
+              return (
+                <tr key={ln.id}>
+                  <td>{ln.listName}</td>
+                  <td>
+                    <Link to={"/View/" + ln.id}>
+                      <button>View List</button>
+                    </Link>
+                  </td>
+                  <td>
+                    <button onClick={() => deleteList(ln.id)}>Delete</button>
+                  </td>
+                  <td>
+                    <button onClick={() => editList(ln)}>Edit</button>
+                  </td>
+                </tr>
+              );
+            }
+          })}
+        </tbody>
       </table>
     </>
   );
